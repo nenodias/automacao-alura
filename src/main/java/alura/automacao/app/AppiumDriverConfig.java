@@ -15,7 +15,9 @@ public class AppiumDriverConfig {
 
     private final AppiumDriver driver;
 
-    public AppiumDriverConfig() throws RuntimeException {
+    private static AppiumDriverConfig instance;
+
+    private AppiumDriverConfig() throws RuntimeException {
         try {
             final DesiredCapabilities configuration = new DesiredCapabilities();
             final File apk = new File("/opt/workspace/automacao-alura/src/main/resources/alura_esporte.apk");
@@ -28,6 +30,13 @@ public class AppiumDriverConfig {
             ex.printStackTrace();
             throw new RuntimeException(ex);
         }
+    }
+
+    public static AppiumDriverConfig getInstance() {
+        if(instance == null){
+            instance = new AppiumDriverConfig();
+        }
+        return instance;
     }
 
     public AppiumDriver getDriver() {

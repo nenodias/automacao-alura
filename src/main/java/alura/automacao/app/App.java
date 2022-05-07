@@ -14,7 +14,7 @@ public class App {
 
     public static void main(String[] args) throws Exception {
         try {
-            final AppiumDriverConfig config = new AppiumDriverConfig();
+            final AppiumDriverConfig config = AppiumDriverConfig.getInstance();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
