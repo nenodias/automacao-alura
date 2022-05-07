@@ -11,6 +11,11 @@ import alura.automacao.app.AppiumDriverConfig;
 import alura.automacao.app.ResultInteraction;
 
 public class CadastroPage {
+    public static final By.ById ID_INPUT_NOME = new By.ById("br.com.alura.aluraesporte:id/input_nome");
+    public static final By.ById ID_INPUT_SENHA = new By.ById("br.com.alura.aluraesporte:id/input_senha");
+    public static final By.ById ID_INPUT_CONFIRMACAO_SENHA = new By.ById("br.com.alura.aluraesporte:id/input_confirmar_senha");
+    public static final By.ById ID_BTN_CADASTRAR = new By.ById("br.com.alura.aluraesporte:id/cadastro_usuario_botao_cadastrar");
+    public static final By.ById ID_MENSAGEM_ERRO = new By.ById("br.com.alura.aluraesporte:id/erro_cadastro");
     private final AppiumDriverConfig config;
     private final WebElement inputNome;
     private final WebElement inputSenha;
@@ -20,10 +25,10 @@ public class CadastroPage {
 
     public CadastroPage(final AppiumDriverConfig config) {
         this.config = config;
-        this.inputNome = config.getDriver().findElement(new By.ById("br.com.alura.aluraesporte:id/input_nome"));
-        this.inputSenha = config.getDriver().findElement(new By.ById("br.com.alura.aluraesporte:id/input_senha"));
-        this.inputConfirmacaoSenha = config.getDriver().findElement(new By.ById("br.com.alura.aluraesporte:id/input_confirmar_senha"));
-        this.botaoCadastrar = config.getDriver().findElement(new By.ById("br.com.alura.aluraesporte:id/cadastro_usuario_botao_cadastrar"));
+        this.inputNome = config.getDriver().findElement(ID_INPUT_NOME);
+        this.inputSenha = config.getDriver().findElement(ID_INPUT_SENHA);
+        this.inputConfirmacaoSenha = config.getDriver().findElement(ID_INPUT_CONFIRMACAO_SENHA);
+        this.botaoCadastrar = config.getDriver().findElement(ID_BTN_CADASTRAR);
     }
 
     public CadastroPage prencherCadastro(final String usuario, final String senha, final String confirmacaoSenha) {
@@ -34,11 +39,10 @@ public class CadastroPage {
     }
 
     public Boolean verificaErro() {
-        final By byId = new By.ById("br.com.alura.aluraesporte:id/erro_cadastro");
         final WebDriverWait espera = new WebDriverWait(config.getDriver(), Duration.ofSeconds(10));
-        System.out.println(espera.until(ExpectedConditions.presenceOfElementLocated(byId)).getText());
-        if (config.hasElement(byId)) {
-            final WebElement labelErro = config.getDriver().findElement(byId);
+        System.out.println(espera.until(ExpectedConditions.presenceOfElementLocated(ID_MENSAGEM_ERRO)).getText());
+        if (config.hasElement(ID_MENSAGEM_ERRO)) {
+            final WebElement labelErro = config.getDriver().findElement(ID_MENSAGEM_ERRO);
             return "Senhas não conferem".equals(labelErro.getText());
         }
         return false;

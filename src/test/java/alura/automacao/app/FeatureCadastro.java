@@ -2,6 +2,7 @@ package alura.automacao.app;
 
 import org.junit.jupiter.api.Test;
 
+import alura.automacao.app.pages.ListaProdutosPage;
 import alura.automacao.app.pages.LoginPage;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -27,13 +28,14 @@ public class FeatureCadastro {
     @Test
     public void cadastrar_usuario_valido_e_faz_login() {
         final AppiumDriverConfig config = AppiumDriverConfig.getInstance();
-        final boolean isInListaProdutosPage = new LoginPage(config)
+        final var listaProdutosPage = new LoginPage(config)
                 .irParaCadastro()
                 .prencherCadastro("fulano", "senha", "senha")
                 .clickBotaoCadastrar()
                 .success()
-                    .logar("fulano", "senha")
-                    .isSuccess();
+                    .logar("fulano", "senha");
+        final boolean isInListaProdutosPage = listaProdutosPage.isSuccess();
+        listaProdutosPage.success().deslogar();
         assertThat("Conseguiu se cadastrar e realizar login?", isInListaProdutosPage, is(equalTo(true)));
     }
 
