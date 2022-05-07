@@ -20,8 +20,7 @@ public class AppiumDriverConfig {
     private AppiumDriverConfig() throws RuntimeException {
         try {
             final DesiredCapabilities configuration = new DesiredCapabilities();
-            final File apk = new File("/opt/workspace/automacao-alura/src/main/resources/alura_esporte.apk");
-            configuration.setCapability(MobileCapabilityType.APP, apk.getAbsolutePath());
+            configuration.setCapability(MobileCapabilityType.APP, "/opt/workspace/automacao-alura/src/main/resources/alura_esporte.apk");
             configuration.setCapability(MobileCapabilityType.PLATFORM_NAME, MobilePlatform.ANDROID);
             configuration.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator2");
             final URL urlConexao = new URL("http://localhost:4723/wd/hub");
