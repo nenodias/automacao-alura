@@ -3,11 +3,8 @@ package alura.automacao.app.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import java.util.Optional;
-
 import alura.automacao.app.AppiumDriverConfig;
 import alura.automacao.app.ResultInteraction;
-import io.appium.java_client.android.AndroidDriver;
 
 public class CadastroPage {
     private final AppiumDriverConfig config;
@@ -41,16 +38,9 @@ public class CadastroPage {
         return false;
     }
 
-    public ResultInteraction<LoginPage, CadastroPage> clickCadastrar() {
+    public ResultInteraction<LoginPage, CadastroPage> clickBotaoCadastrar() {
         this.botaoCadastrar.click();
         return ResultInteraction.both(() -> new LoginPage(config), () -> this);
     }
 
-
-    public Optional<LoginPage> irParaLogin() {
-        if (!this.verificaErro()) {
-            return Optional.of(new LoginPage(config));
-        }
-        return Optional.empty();
-    }
 }

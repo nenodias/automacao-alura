@@ -16,22 +16,22 @@ public class FeatureCadastro {
         final boolean erro = new LoginPage(config)
                 .irParaCadastro()
                 .prencherCadastro("fulano", "senha", "outra")
-                .clickCadastrar()
+                .clickBotaoCadastrar()
                 .fail().verificaErro();
         assertThat("Ocorreu erro ao cadastrar?", erro, is(equalTo(true)));
     }
 
     @Test
-    public void cadastrar_usuario_valido() {
+    public void cadastrar_usuario_valido_e_faz_login() {
         final AppiumDriverConfig config = new AppiumDriverConfig();
-        final boolean isInLoginPage = new LoginPage(config)
+        final boolean isInListaProdutosPage = new LoginPage(config)
                 .irParaCadastro()
                 .prencherCadastro("fulano", "senha", "senha")
-                .clickCadastrar()
+                .clickBotaoCadastrar()
                 .success()
                     .logar("fulano", "senha")
                     .isSuccess();
-        assertThat("Esta na tela de login?", isInLoginPage, is(equalTo(true)));
+        assertThat("Conseguiu se cadastrar e realizar login?", isInListaProdutosPage, is(equalTo(true)));
     }
 
 }
