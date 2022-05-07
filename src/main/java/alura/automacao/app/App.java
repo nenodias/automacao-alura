@@ -14,14 +14,8 @@ public class App {
 
     public static void main(String[] args) throws Exception {
         try {
-            final DesiredCapabilities configuration = new DesiredCapabilities();
-            final File apk = new File("/opt/workspace/automacao-alura/src/main/resources/alura_esporte.apk");
-            configuration.setCapability(MobileCapabilityType.APP, apk.getAbsolutePath());
-            configuration.setCapability(MobileCapabilityType.PLATFORM_NAME, MobilePlatform.ANDROID);
-            configuration.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator2");
-            final URL urlConexao = new URL("http://localhost:4723/wd/hub");
-            final AppiumDriver driver = new AppiumDriver(urlConexao, configuration);
-        } catch (Exception ex){
+            final AppiumDriverConfig config = new AppiumDriverConfig();
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
 
