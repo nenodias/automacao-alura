@@ -2,6 +2,10 @@ package alura.automacao.app.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 import alura.automacao.app.AppiumDriverConfig;
 import alura.automacao.app.ResultInteraction;
@@ -31,6 +35,8 @@ public class CadastroPage {
 
     public Boolean verificaErro() {
         final By byId = new By.ById("br.com.alura.aluraesporte:id/erro_cadastro");
+        final WebDriverWait espera = new WebDriverWait(config.getDriver(), Duration.ofSeconds(10));
+        System.out.println(espera.until(ExpectedConditions.presenceOfElementLocated(byId)).getText());
         if (config.hasElement(byId)) {
             final WebElement labelErro = config.getDriver().findElement(byId);
             return "Senhas não conferem".equals(labelErro.getText());
